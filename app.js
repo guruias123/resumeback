@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 //mongodb+srv://venky:venky123@cluster0.bxnfz.mongodb.net/amazon?retryWrites=true&w=majority
 // mongodb://localhost:27017
-const mongourl = "mongodb://localhost:27017";
+const mongourl = "mongodb+srv://venky:venky123@cluster0.bxnfz.mongodb.net/amazon?retryWrites=true&w=majority";
 let db;
 
 app.use(cors());
@@ -21,7 +21,7 @@ app.get('/', (req,res)=>{
 }
 )
 app.get('/signup1', (req,res)=>{
-    db.collection('users').find({}).toArray((err,result)=>{
+    db.collection('resume').find({}).toArray((err,result)=>{
       if(err) throw err;
       res.send(result)
     })
@@ -29,7 +29,7 @@ app.get('/signup1', (req,res)=>{
   
   
   app.post('/signup', (req,res)=>{
-    db.collection('users').insert(req.body,(err,result)=>{
+    db.collection('resume').insert(req.body,(err,result)=>{
             if(err) throw err;
             res.send(result)
     })
@@ -37,7 +37,7 @@ app.get('/signup1', (req,res)=>{
 
 MongoClient.connect(mongourl,(err,connection) => {
     if(err) console.log(err);
-    db = connection.db('userDB');
+    db = connection.db('amazon');
   
     app.listen(port,(err) => {
       if(err) throw err;

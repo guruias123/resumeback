@@ -21,7 +21,7 @@ app.get('/', (req,res)=>{
 }
 )
 app.get('/signup1', (req,res)=>{
-    db.collection('resume').find({}).toArray((err,result)=>{
+    db.collection('resume').find().toArray((err,result)=>{
       if(err) throw err;
       res.send(result)
     })
